@@ -1,6 +1,6 @@
 # WebScraper
 
-Scrapes stock data from a web page using the libcurl API.
+Scrapes stock data from a web page using the libcurl library.
 
 This program get the HTML code of a stock website and writes it to a file using the libcurl 'easy' interface. It then parses through the HTML and write the data to the screen.
 
