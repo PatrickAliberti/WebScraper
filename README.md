@@ -8,10 +8,6 @@ The WebPage class is used to represent the webpage you are gettin the HTML code 
 
 The File class is used to represent the file the program is parsing through and contains the operations for finding and displaying the data.
 
-# "On The Way"
-
-It is unfinished and still being developed as my final project for CIS-125
-
 # Author
 
 Patrick Aliberti
