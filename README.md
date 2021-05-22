@@ -1,4 +1,4 @@
-# WebScraper
+# Stock Data Scraper
 
 Scrapes the stock price of a stock depending on the stock symbol entered by the user with the libcurl library.
 
