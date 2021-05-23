@@ -12,7 +12,7 @@ This program is the implementation file for the File class
 #include "File.h"
 using namespace std;
 
-// Search member modifier
+// Search member mutator
 void File::setSearch(string s)
 {
 	search = s;
