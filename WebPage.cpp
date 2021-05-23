@@ -23,23 +23,24 @@ char *WebPage::getUrl()
 	string strUrl = "http://tickertech.net/cgi/?ticker=";
 	for (int i = 0; i < strUrl.length(); i++)
 		bareUrl[i] = strUrl[i];
-    string stockString;
-    
-    cout << "Enter the symbol of the stock you want:\n";
-    cin >> stockString;
-    if (stockString.length() > 4)
-    {
-    	cout << "Please enter a valid stock symbol" << endl;
-    	cin >> stockString;
+	
+	string stockString;
+
+	cout << "Enter the symbol of the stock you want:\n";
+	cin >> stockString;
+	if (stockString.length() > 4)
+	{
+		cout << "Please enter a valid stock symbol" << endl;
+		cin >> stockString;
 	}
-    
-    int tickerSize = stockString.length();							// Set a c-string equal to the ticker
-    char stock[tickerSize];
-    for (int i = 0; i < tickerSize; i++)
-    {
-    	stock[i] = stockString[i];
+
+	int tickerSize = stockString.length();		// Set a c-string equal to the ticker
+	char stock[tickerSize];
+	for (int i = 0; i < tickerSize; i++)
+	{
+		stock[i] = stockString[i];
 	}
-	strcat(bareUrl, stock);											// Append ticker to the 'skelaton URL'
+	strcat(bareUrl, stock);				// Append ticker to the 'skelaton URL'
 	return bareUrl;
 }
 
@@ -52,17 +53,29 @@ data in:	handle to a transfer, handle to a file, and variable used for performin
 ***************************************************************************************************/
 void WebPage::urlToFile(CURL* curl, FILE* fp, CURLcode res)
 {
-    char *url = bareUrl;
-    char outfilename[FILENAME_MAX] = "page.html";
-    curl = curl_easy_init();                 						// Empty handle to a transfer                                                                                                                                                                                                                                          
-    if (curl)
-    {   
-        fp = fopen(outfilename,"wb");								// Open file
-        curl_easy_setopt(curl, CURLOPT_URL, url);					// Set URL to get here
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);		// Send html data to this function
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);				// Write data to the file handle
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-        fclose(fp);
-    }
+	char *url = bareUrl;
+	char outfilename[FILENAME_MAX] = "page.html";
+	
+	// Create an empty handle to a transfer
+	curl = curl_easy_init();                                                                                                                                                                                                                                          
+	if (curl)
+	{   
+		fp = fopen(outfilename,"wb");
+		
+		// Set transfer to URL
+		curl_easy_setopt(curl, CURLOPT_URL, url);
+		
+		// Send html data to this function
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
+		
+		// Write data to the file handle
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+		
+		// Perform transfer; return HTML code in the file
+		res = curl_easy_perform(curl);
+		
+		// Cleanup
+		curl_easy_cleanup(curl);
+		fclose(fp);
+	}
 }
