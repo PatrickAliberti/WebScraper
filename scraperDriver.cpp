@@ -31,14 +31,14 @@ int main(void)
 
 	// Read the file into a sting so that it can be parsed
 	string file = htmlFile.readFileIntoString();
-	cout << "\nThe HTML code:\n\n" << file << endl;
+	// cout << "\nThe HTML code:\n\n" << file << endl;
 
 	// St the value of the search criteria
 	htmlFile.setSearch("<b>");
 
 	// Find where in the file the stock price is
 	unsigned long long position = htmlFile.findPrice();
-	cout << "\nThe index of the price in the file is " << position << endl;
+	// cout << "\nThe index of the price in the file is " << position << endl;
 
 	// Trim the string so that it only shows the data to be displayed
 	string stockPrice = htmlFile.trimString();
